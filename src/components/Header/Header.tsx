@@ -1,5 +1,7 @@
 import React from "react";
 import { Container } from "react-bootstrap";
+import { useAppDispatch } from "../../hooks/redux";
+import { logout } from "../../store/reducers/auth/thunk-creators";
 import {
    AuthUser,
    AuthUserName,
@@ -9,9 +11,10 @@ import {
 } from "./style";
 
 const Header = () => {
+   const dispatch = useAppDispatch();
 
    const handleLogout = () => {
-      console.log('logged out');
+      dispatch(logout());
    }
 
    return (

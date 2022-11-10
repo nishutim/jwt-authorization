@@ -5,6 +5,7 @@ export const StyledLoginForm = styled.div`
    padding: 30px;
    border: 1px solid lightgray;
    border-radius: 15px;
+   background-color: white;
 `;
 
 export const LoginFormTitle = styled.h2`

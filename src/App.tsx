@@ -1,12 +1,12 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import HomePage from './pages/HomePage';
+import AppRouter from './router/AppRouter';
 
 const App = () => {
   return (
     <div className='appWrapper'>
-      <HomePage />
+      <AppRouter />
     </div>
   );
 }
