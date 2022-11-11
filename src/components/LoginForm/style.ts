@@ -12,3 +12,10 @@ export const LoginFormTitle = styled.h2`
    margin-bottom: 20px;
    text-align: center;
 `;
+
+export const LoginFormStatus = styled.p`
+   margin-bottom: 10px;
+   text-align: center;
+   font-size: 18px;
+   color: lightcoral;
+`;

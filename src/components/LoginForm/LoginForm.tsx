@@ -1,19 +1,18 @@
 import React, { FC, ChangeEvent, FormEvent, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { Button, Form, Stack } from "react-bootstrap";
-import { LoginFormTitle, StyledLoginForm } from "./style";
+import { LoginFormStatus, LoginFormTitle, StyledLoginForm } from "./style";
 
 interface Props {
-   onSubmit: (email: string, password: string) => void
+   isLoginPage: boolean
+   onSubmit: (email: string, password: string, setStatus: (status: string) => void) => void
 }
 
-const LoginForm: FC<Props> = ({ onSubmit }) => {
-   const { pathname } = useLocation();
-
+const LoginForm: FC<Props> = ({ isLoginPage, onSubmit }) => {
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
+   const [errorMessage, setErrorMessage] = useState('');
 
-   const isLoginPage = pathname === '/login';
    const titleText = isLoginPage ? 'Authorization' : 'Registration';
    const btnText = isLoginPage ? 'Sign in' : 'Sign up';
    const paragraphText = isLoginPage ? 'Still don\'t have an acount?' : 'Already have an account?';
@@ -30,13 +29,14 @@ const LoginForm: FC<Props> = ({ onSubmit }) => {
 
    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      onSubmit(email, password);
+      onSubmit(email, password, setErrorMessage);
    }
 
    return (
       <StyledLoginForm>
          <Form onSubmit={handleSubmit}>
             <LoginFormTitle>{titleText}</LoginFormTitle>
+            {errorMessage && <LoginFormStatus>{errorMessage}</LoginFormStatus>}
             <Form.Control
                type="email"
                value={email}
