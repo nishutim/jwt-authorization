@@ -1,17 +1,19 @@
 import React, { FC, ChangeEvent, FormEvent, useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Button, Form, Stack } from "react-bootstrap";
 import { LoginFormStatus, LoginFormTitle, StyledLoginForm } from "./style";
 
 interface Props {
    isLoginPage: boolean
-   onSubmit: (email: string, password: string, setStatus: (status: string) => void) => void
+   onSubmit: (email: string, password: string, setStatus: (status: string) => void) => Promise<void>
 }
 
 const LoginForm: FC<Props> = ({ isLoginPage, onSubmit }) => {
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
    const [errorMessage, setErrorMessage] = useState('');
+
+   const [disableBtn, setDisableBtn] = useState(false);
 
    const titleText = isLoginPage ? 'Authorization' : 'Registration';
    const btnText = isLoginPage ? 'Sign in' : 'Sign up';
@@ -27,9 +29,11 @@ const LoginForm: FC<Props> = ({ isLoginPage, onSubmit }) => {
       setPassword(e.target.value);
    }
 
-   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      onSubmit(email, password, setErrorMessage);
+      setDisableBtn(true);
+      await onSubmit(email, password, setErrorMessage);
+      setDisableBtn(false);
    }
 
    return (
@@ -51,7 +55,7 @@ const LoginForm: FC<Props> = ({ isLoginPage, onSubmit }) => {
                className="mb-4" />
             <Stack className="d-flex flex-row justify-content-between align-items-center">
                <p className="mb-0">{paragraphText} <NavLink to={linkPath}>{linkText}</NavLink></p>
-               <Button type="submit">{btnText}</Button>
+               <Button disabled={disableBtn} type="submit">{btnText}</Button>
             </Stack>
          </Form>
       </StyledLoginForm>

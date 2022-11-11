@@ -1,7 +1,9 @@
+import React from 'react';
 import { IRoute } from "../models";
 import RouteNames from "./RouteNames";
-import HomePage from "../pages/HomePage";
-import LoginPage from "../pages/LoginPage";
+
+const LoginPage = React.lazy(() => import("../pages/LoginPage"));
+const UsersPage = React.lazy(() => import("../pages/UsersPage"));
 
 export const publicRoutes = [
    {
@@ -16,7 +18,7 @@ export const publicRoutes = [
 
 export const privateRoutes = [
    {
-      path: RouteNames.APP,
-      Component: HomePage
+      path: RouteNames.USERS,
+      Component: UsersPage
    }
 ] as IRoute[];

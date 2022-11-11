@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container } from "react-bootstrap";
 import { useAppDispatch } from "../../hooks/redux";
 import { logout } from "../../store/reducers/auth/thunk-creators";
@@ -11,10 +11,14 @@ import {
 } from "./style";
 
 const Header = () => {
+   const [disableBtn, setDisableBtn] = useState(false);
+
    const dispatch = useAppDispatch();
 
-   const handleLogout = () => {
-      dispatch(logout());
+   const handleLogout = async () => {
+      setDisableBtn(true);
+      await dispatch(logout());
+      setDisableBtn(false);
    }
 
    return (
@@ -24,7 +28,7 @@ const Header = () => {
                <AuthUser>
                   <AuthUserName>Username</AuthUserName>
                </AuthUser>
-               <LogoutButton onClick={handleLogout}>Sign out</LogoutButton>
+               <LogoutButton disabled={disableBtn} onClick={handleLogout}>Sign out</LogoutButton>
             </HeaderBody>
          </Container>
       </StyledHeader>

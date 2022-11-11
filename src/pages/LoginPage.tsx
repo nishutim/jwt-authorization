@@ -11,9 +11,9 @@ const LoginPage = () => {
 
    const dispatch = useAppDispatch();
 
-   const onSubmit = (email: string, password: string, setStatus: (status: string) => void) => {
+   const onSubmit = async (email: string, password: string, setStatus: (status: string) => void) => {
       const action = isLoginPage ? login : registration;
-      dispatch(action(email, password, setStatus));
+      await dispatch(action(email, password, setStatus));
    }
 
    return (

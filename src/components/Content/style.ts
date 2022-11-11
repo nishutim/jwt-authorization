@@ -10,4 +10,6 @@ export const StyledContent = styled.div`
 
 export const ContentContainer = styled(Container)`
    flex: 1 1 auto;
+   display: flex;
+   flex-direction: column;
 `;
