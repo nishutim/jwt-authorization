@@ -1,17 +1,20 @@
 import React, { useState } from "react";
-import { Container } from "react-bootstrap";
-import { useAppDispatch } from "../../hooks/redux";
+import { Button, Container } from "react-bootstrap";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { auth_selectUser } from '../../store/reducers/auth/selectors';
 import { logout } from "../../store/reducers/auth/thunk-creators";
 import {
    AuthUser,
    AuthUserName,
    HeaderBody,
-   LogoutButton,
    StyledHeader
 } from "./style";
 
 const Header = () => {
    const [disableBtn, setDisableBtn] = useState(false);
+
+   const user = useAppSelector(auth_selectUser);
+   const userName = user?.email || 'Username';
 
    const dispatch = useAppDispatch();
 
@@ -26,9 +29,9 @@ const Header = () => {
          <Container>
             <HeaderBody>
                <AuthUser>
-                  <AuthUserName>Username</AuthUserName>
+                  <AuthUserName>{userName}</AuthUserName>
                </AuthUser>
-               <LogoutButton disabled={disableBtn} onClick={handleLogout}>Sign out</LogoutButton>
+               <Button disabled={disableBtn} onClick={handleLogout}>Sign out</Button>
             </HeaderBody>
          </Container>
       </StyledHeader>

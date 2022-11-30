@@ -1,12 +1,13 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import LoginForm from "../components/LoginForm/LoginForm";
-import { Page, PageBody } from "../components/styled";
 import { useAppDispatch } from "../hooks/redux";
 import { login, registration } from "../store/reducers/auth/thunk-creators";
+import { Page, PageBody } from "../components/styled";
+import LoginForm from "../components/LoginForm/LoginForm";
 
 const LoginPage = () => {
    const { pathname } = useLocation();
+
    const isLoginPage = pathname === '/login';
 
    const dispatch = useAppDispatch();

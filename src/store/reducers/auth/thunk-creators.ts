@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import { AuthActions } from '.';
 import AuthService from '../../../services/AuthService';
 import { AppDispatch } from './../../index';
@@ -41,6 +42,6 @@ export const checkAuth = () => async (dispatch: AppDispatch) => {
          dispatch(AuthActions.loginSuccess(data.user));
       }
    } catch (e: any) {
-      alert(e.response.data.message);
+      if (e.response.status !== 401) alert(e.response.data.message);
    }
 }

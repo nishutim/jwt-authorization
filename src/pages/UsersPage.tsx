@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
-import GlobalError from "../components/GlobalError/GlobalError";
-import Preloader from "../components/Preloader/Preloader";
-import { Page, PageBody } from "../components/styled";
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
 import { users_selectError, users_selectIsLoading, users_selectUsers } from "../store/reducers/users/selectors";
 import { fetchUsers } from "../store/reducers/users/thunk-creators";
+import { Page, PageBody } from "../components/styled";
+import Preloader from "../components/Preloader/Preloader";
+import GlobalError from "../components/GlobalError/GlobalError";
 
 const UsersPage = () => {
    const isLoading = useAppSelector(users_selectIsLoading);

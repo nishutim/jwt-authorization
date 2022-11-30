@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Button } from 'react-bootstrap';
 
 export const StyledHeader = styled.header`
-   background-color: peachpuff;
+   background-color: rgb(245, 238, 230);
 `;
 
 export const HeaderBody = styled.div`
@@ -16,15 +16,4 @@ export const HeaderBody = styled.div`
 export const AuthUser = styled.div``;
 export const AuthUserName = styled.h4`
    font-size: 20px;
-   color: darkorchid;
-`;
-
-export const LogoutButton = styled(Button)`
-   border-color: palevioletred;
-   background-color: palevioletred;
-
-   &:hover {
-      border-color: rgb(206, 106, 139);
-      background-color: rgb(206, 106, 139);
-   }
 `;
